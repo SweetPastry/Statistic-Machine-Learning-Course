@@ -82,5 +82,41 @@ $$
 这样就证明了此题.
 
 ## Q3
-> 已知针对模型 $f$, 使用训练数据集得到的估计记为 $\hat{f}$, 现有独立于训练数据集的 $(x_0, y_0)$, 其中 $x_0$ 为非随机的给定值, $y_0 = f(x_0) + \epsilon$, 其中 $\epsilon$ 为随机误差项, 证明：
-> $$\mathbb{E}\left( y_0 - \hat{f}(x_0) \right)^2 = \text{Var}\left( \hat{f}(x_0) \right) + \left[ \text{Bias} \left( \hat{f}(x_0) \right) \right]^2 + \text{Var}(\epsilon).$$
+> 已知针对模型 $f$, 使用训练数据集得到的估计记为 $\hat{f}$, 现有独立于训练数据集的 $(x_0, y_0)$, 其中 $x_0$ 为非随机的给定值, $y_0 = f(x_0) + \varepsilon$, 其中 $\varepsilon$ 为随机误差项, 证明：
+> $${E}\left( y_0 - \hat{f}(x_0) \right)^2 = \text{Var}\left( \hat{f}(x_0) \right) + \left[ \text{Bias} \left( \hat{f}(x_0) \right) \right]^2 + \text{Var}(\varepsilon).$$
+
+这个等式学名是**偏差-方差分解 (Bias-Variance Decomposition)**, 在证明这个等式之前先证明一个小的引理:
+
+>> $$E\left[ \left( f\left( x_0 \right) -\hat{f}\left( x_0 \right) \right) ^2 \right] =\mathrm{Var}\left( \hat{f}\left( x_0 \right) \right) +\mathrm{Bias}^2\left( \hat{f}\left( x_0 \right) \right) .$$
+
+将等号左边展开写:
+
+$$
+\begin{align*}
+&E\left( f^2\left( x_0 \right) +\hat{f}^2\left( x_0 \right) -2f\left( x_0 \right) \hat{f}\left( x_0 \right) \right) =E\left( f^2\left( x_0 \right) \right) +E\left( \hat{f}^2\left( x_0 \right) \right) -2E\left( f\left( x_0 \right) \hat{f}\left( x_0 \right) \right) 
+\\
+&=f^2\left( x_0 \right) +E\left( \hat{f}^2\left( x_0 \right) \right) -2f\left( x_0 \right) E\left( \hat{f}\left( x_0 \right) \right) 
+\\
+&=\left( E\left( \hat{f}^2\left( x_0 \right) \right) -E^2\left( \hat{f}\left( x_0 \right) \right) \right) +\left( f^2\left( x_0 \right) -2f\left( x_0 \right) E\left( \hat{f}\left( x_0 \right) \right) +E^2\left( \hat{f}\left( x_0 \right) \right) \right) 
+\\
+&=\left( E\left( \hat{f}^2\left( x_0 \right) \right) -E^2\left( \hat{f}\left( x_0 \right) \right) \right) +\left( f\left( x_0 \right) -E\left( \hat{f}\left( x_0 \right) \right) \right) ^2
+\\
+&=\mathrm{Var}\left( \hat{f}\left( x_0 \right) \right) +\mathrm{Bias}^2\left( \hat{f}\left( x_0 \right) \right) 
+\end{align*}
+$$
+
+接下来是原问题的证明. 
+
+$$
+\begin{align*}
+ E\left( y_0-\hat{f}\left( x_0 \right) \right) ^2&=E\left( f\left( x_0 \right) -\hat{f}\left( x_0 \right) +\varepsilon \right) ^2
+\\
+&=E\left( \left( f\left( x_0 \right) -\hat{f}\left( x_0 \right) \right) ^2+2\varepsilon \left( f\left( x_0 \right) -\hat{f}\left( x_0 \right) \right) +\varepsilon ^2 \right) 
+\\
+&=E\left( f\left( x_0 \right) -\hat{f}\left( x_0 \right) \right) ^2+2E\left( \varepsilon \right) E\left( f\left( x_0 \right) -\hat{f}\left( x_0 \right) \right) +E\left( \varepsilon ^2 \right) 
+\\
+&=\mathrm{Var}\left( \hat{f}\left( x_0 \right) \right) +\mathrm{Bias}^2\left( \hat{f}\left( x_0 \right) \right) +E\left( \varepsilon ^2 \right)    
+\end{align*}
+$$
+
+其中用到了随机误差项 $\varepsilon$ 的性质 $E(\varepsilon)=0$.
