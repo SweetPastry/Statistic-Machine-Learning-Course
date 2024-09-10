@@ -2,7 +2,7 @@
 <p align="center">姓名: 林海轩 &nbsp 学号: 2330711026 &nbsp 院系: 物理学系 &nbsp 专业: 物理学</p align="center">
 
 ## Q1
-> 通过经验风险最小化推导极大似然估计.
+> 通过经验风险最小化推导极大似然估计. 证明模型是条件概率分布, 当损失函数是对数损失函数时, 经验风险最小化等价于极大似然估计.
 
 即证明, 模型参数 $\theta$ 使得
 
@@ -35,5 +35,49 @@ $$
 ## Q2
 > 证明 Hoeffding 引理:
 > 随机变量 $X$ 满足 $E(X)=0$ 且 $P(X\in\left[a,b\right])=1$, 则
-> $$E\left(\mathrm{e}^{sX}\right)\leqslant\mathrm{e}^{\frac{s^2(b-a)^2}{8}}$$
+> $$E\left(\mathrm{e}^{sX}\right)\leqslant\mathrm{e}^{\frac{s^2(b-a)^2}{8}}.$$
+
+此处利用 $\mathrm{e}^{sx}$ 是下凸函数的性质, 有
+
+$$
+\mathrm{e}^{s\left( \theta a+\left( 1-\theta \right) b \right)}\leqslant \theta \mathrm{e}^{sa}+\left( 1-\theta \right) \mathrm{e}^{s\left( 1-\theta \right) b}.\qquad (0\leqslant\theta\leqslant 1)
+$$
+
+取 $\theta =\frac{b-X}{b-a}$, 得到
+
+$$
+\mathrm{e}^{sX}\leqslant \frac{b-X}{b-a}\mathrm{e}^{sa}+\frac{X-a}{b-a}\mathrm{e}^{sb}.
+$$
+
+两边求期望,
+
+$$
+E\left( \mathrm{e}^{sX} \right) \leqslant \frac{b-E\left( X \right)}{b-a}\mathrm{e}^{sa}+\frac{E\left( X \right) -a}{b-a}\mathrm{e}^{sb}=\frac{b}{b-a}\mathrm{e}^{sa}-\frac{a}{b-a}\mathrm{e}^{sb}.
+$$
+
+这事实上是比 Hoeffding 引理更紧的不等式, 也就是说为完成此题, 只需要证明:
+
+$$
+\frac{b}{b-a}\mathrm{e}^{sa}-\frac{a}{b-a}\mathrm{e}^{sb}\leqslant \mathrm{e}^{\frac{s^2\left( b-a \right) ^2}{8}}.
+$$
+
+记
+
+$$
+F\left( s \right) =-\frac{b}{b-a}\mathrm{e}^{sa}+\frac{a}{b-a}\mathrm{e}^{sb}+\mathrm{e}^{\frac{s^2\left( b-a \right) ^2}{8}}.
+$$
+
+那么
+
+$$
+F^{\prime}\left( s \right) =\frac{ab}{b-a}\left( \mathrm{e}^{sb}-\mathrm{e}^{sa} \right) +\frac{s\left( b-a \right) ^2}{4}\mathrm{e}^{\frac{s^2\left( b-a \right) ^2}{8}}.
+$$
+
+当 $s<0$ 时 $F^{\prime}\left( s \right)<0$, 当 $s>0$ 时 $F^{\prime}\left( s \right)>0$, 于是
+
+$$
+F\left( s \right) \geqslant F\left( 0 \right) =0.
+$$
+
+这样就证明了此题.
 
