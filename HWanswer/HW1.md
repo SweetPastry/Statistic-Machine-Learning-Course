@@ -119,4 +119,4 @@ $$
 \end{align*}
 $$
 
-其中用到了随机误差项 $\varepsilon$ 的性质 $E(\varepsilon)=0$.
+其中用到了随机误差项 $\varepsilon$ 的性质 $E(\varepsilon)=0$. 
