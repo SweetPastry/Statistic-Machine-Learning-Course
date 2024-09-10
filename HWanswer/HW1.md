@@ -81,3 +81,6 @@ $$
 
 这样就证明了此题.
 
+## Q3
+> 已知针对模型 $f$, 使用训练数据集得到的估计记为 $\hat{f}$, 现有独立于训练数据集的 $(x_0, y_0)$, 其中 $x_0$ 为非随机的给定值, $y_0 = f(x_0) + \epsilon$, 其中 $\epsilon$ 为随机误差项, 证明：
+> $$\mathbb{E}\left( y_0 - \hat{f}(x_0) \right)^2 = \text{Var}\left( \hat{f}(x_0) \right) + \left[ \text{Bias} \left( \hat{f}(x_0) \right) \right]^2 + \text{Var}(\epsilon).$$
