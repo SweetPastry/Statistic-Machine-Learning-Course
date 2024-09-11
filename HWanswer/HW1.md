@@ -240,7 +240,25 @@ $$
 \end{align*}
 $$
 
-(d) 
+(d) 利用 Q4(b) 给出的公式, 以及链式法则
+
+$$
+\begin{align*}
+\frac{\partial \alpha}{\partial \mathbf{z}^T}&=\frac{\partial \alpha}{\partial \mathbf{x}^T}\frac{\partial \mathbf{x}}{\partial \mathbf{z}^T}+\frac{\partial \alpha}{\partial \mathbf{y}^T}\frac{\partial \mathbf{y}}{\partial \mathbf{z}^T}
+\\
+&=\left( \mathbf{x}^T\mathbf{A}^T\left( \frac{\partial \mathbf{y}}{\partial \mathbf{x}^T} \right) +\mathbf{y}^T\mathbf{A} \right) \frac{\partial \mathbf{x}}{\partial \mathbf{z}^T}+\left( \mathbf{yA}\frac{\partial \mathbf{x}}{\partial \mathbf{y}^T}+\mathbf{x}^T\mathbf{A}^T \right) \frac{\partial \mathbf{y}}{\partial \mathbf{z}^T}
+\\
+&=\mathbf{y}^T\mathbf{A}\left( \frac{\partial \mathbf{x}}{\partial \mathbf{z}^T} \right) +\mathbf{x}^T\mathbf{A}^T\left( \frac{\partial \mathbf{y}}{\partial \mathbf{z}^T} \right) .
+\end{align*}
+$$
+
+此处矩阵求导的链式法则可以由标量求导的链式法则直接得到.
+
+(e) $$0=\frac{\partial \mathbf{I}}{\partial \alpha}=\frac{\partial \left( \mathbf{AA}^{-1} \right)}{\partial \alpha}=\mathbf{A}\frac{\partial \mathbf{A}^{-1}}{\partial \alpha}+\frac{\partial \mathbf{A}}{\partial \alpha}\mathbf{A}^{-1}.
+\\
+\mathbf{A}\frac{\partial \mathbf{A}^{-1}}{\partial \alpha}=-\frac{\partial \mathbf{A}}{\partial \alpha}\mathbf{A}^{-1}.
+\\
+\frac{\partial \mathbf{A}^{-1}}{\partial \alpha}=-\mathbf{A}^{-1}\frac{\partial \mathbf{A}}{\partial \alpha}\mathbf{A}^{-1}$$
 
 ## Q5
 > 求 $\hat{\mathbf{a}}$ 使得
