@@ -120,3 +120,41 @@ $$
 $$
 
 其中用到了随机误差项 $\varepsilon$ 的性质 $E(\varepsilon)=0$. 
+
+## Q4
+> 令 $\mathbf{y}=\mathbf{\Psi }\left( \mathbf{x} \right) $, 其中 $\mathbf{y}$ 是 $m\times 1$ 阶向量, $\mathbf{x}$ 是 $n\times 1$ 阶向量, 记
+> $$\frac{\partial \mathbf{y}}{\partial \mathbf{x}^T}=\left( \begin{matrix}
+	\frac{\partial y_1}{\partial x_1}&		\frac{\partial y_1}{\partial x_2}&		\cdots&		\frac{\partial y_1}{\partial x_n}\\
+	\frac{\partial y_2}{\partial x_1}&		\frac{\partial y_2}{\partial x_2}&		\cdots&		\frac{\partial y_2}{\partial x_n}\\
+	\vdots&		\vdots&		\,\,&		\vdots\\
+	\frac{\partial y_m}{\partial x_1}&		\frac{\partial y_m}{\partial x_2}&		\cdots&		\frac{\partial y_m}{\partial x_n}\\
+> \end{matrix} \right) .$$
+> (a) 令 $\mathbf{y}=\mathbf{Ax}$, 其中 $\mathbf{A}$ 是 $m\times n$ 阶的矩阵, 且独立于 $\mathbf{x}$, 证明:
+> $$\frac{\partial \mathbf{y}}{\partial \mathbf{x}^T}=\mathbf{A}.$$
+> (b) 令标量 $\alpha=\mathbf{y}^T\mathbf{Ax}$, $\mathbf{A}$ 独立于 $\mathbf{x}$ 与 $\mathbf{y}$, 证明:
+> $$
+\frac{\partial \alpha}{\partial \mathbf{x}^T}=\mathbf{x}^T\mathbf{A}^T\left( \frac{\partial \mathbf{y}}{\partial \mathbf{x}^T} \right) +\mathbf{y}^T\mathbf{A}.
+$$
+> (c) 考虑一种特别的情况, 标量 $\alpha$ 由二次其次多项式给出:
+> $$
+\alpha =\mathbf{x}^T\mathbf{Ax}.
+$$
+> 其中 $\mathbf{A}$ 的形状是 $n\times n$, 且独立于 $\mathbf{x}$, 证明:
+> $$
+\frac{\partial \alpha}{\partial \mathbf{x}^T}=\mathbf{x}^T\left( \mathbf{A}+\mathbf{A}^T \right) .
+$$
+> (d) 令 $\alpha =\mathbf{y}^T\mathbf{Ax}$, 其中 $\mathbf{A}$ 的形状是 $m\times n$, $\mathbf{y}$ 和 $\mathbf{x}$ 都是 $\mathbf{z}$ 的函数, 其中 $\mathbf{z}$ 是 $q\times 1$ 阶向量, 且 $\mathbf{A}$ 独立于 $\mathbf{z}$. 证明:
+> $$
+\frac{\partial \alpha}{\partial \mathbf{z}^T}=\mathbf{x}^T\mathbf{A}^T\left( \frac{\partial \mathbf{y}}{\partial \mathbf{z}^T} \right) +\mathbf{y}^T\mathbf{A}\left( \frac{\partial \mathbf{x}}{\partial \mathbf{z}^T} \right) .
+$$
+> (e) 令 $\mathbf{A}$ 非奇异, 形状为 $m\times m$, 且其中的所有元素都是标量 $\alpha$ 的函数. 证明:
+> $$
+\frac{\partial \mathbf{A}^{-1}}{\partial \alpha}=-\mathbf{A}^{-1}\frac{\partial \mathbf{A}}{\partial \alpha}\mathbf{A}^{-1}.
+$$
+
+## Q5
+> 求 $\hat{\mathbf{a}}$ 使得
+> $$
+\underset{\mathbf{a}}{\min}\left\| \mathbf{Xa}-\mathbf{y} \right\| _2.
+$$
+> 其中 $\mathbf{X}$ 是 $n\times p$ 阶的矩阵, $\mathbf{y}$ 是 $n\times 1$ 阶的向量, $\mathbf{a}$ 是 $p\times 1$ 阶的向量. $\mathbf{X}^T\mathbf{X}$ 是非奇异的.
