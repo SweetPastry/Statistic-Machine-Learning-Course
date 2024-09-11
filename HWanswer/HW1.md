@@ -152,6 +152,96 @@ $$
 \frac{\partial \mathbf{A}^{-1}}{\partial \alpha}=-\mathbf{A}^{-1}\frac{\partial \mathbf{A}}{\partial \alpha}\mathbf{A}^{-1}.
 $$
 
+(a) 可以直接根据定义得到. 先写出 $\mathbf{y}$ 的表达式
+
+$$
+\mathbf{y}=\left( \begin{matrix}
+	a_{11}&		\cdots&		a_{1n}\\
+	\vdots&		\,\,&		\vdots\\
+	a_{m1}&		\cdots&		a_{mn}\\
+\end{matrix} \right) \left( \begin{array}{c}
+	x_1\\
+	\vdots\\
+	x_n\\
+\end{array} \right) =\left( \begin{array}{c}
+	\sum\limits_{i=1}^n{a_{1k}x_k}\\
+	\vdots\\
+	\sum\limits_{i=1}^n{a_{mk}x_k}\\
+\end{array} \right)  .
+$$
+
+然后求偏导数:
+
+$$
+\frac{\partial \mathbf{y}}{\partial \mathbf{x}^T}=\left( \begin{matrix}
+	a_{11}&		\cdots&		a_{1n}\\
+	\vdots&		\,\,&		\vdots\\
+	a_{m1}&		\cdots&		a_{mn}\\
+\end{matrix} \right) =\mathbf{A}.
+$$
+
+(b) 本题采取根据矩阵相乘定义式的方法证明. 先写出 $\alpha$ 的表达式, 根据二次其次式的性质:
+
+$$
+\alpha =\sum_{i=1}^m{\sum_{j=1}^n{a_{ij}y_ix_j}}.
+$$
+
+两边求导数, 下面写出的是位置 $1\times k$ 上元素的表达式:
+
+$$
+\begin{align*}
+\frac{\partial}{\partial x_k}\sum_{i=1}^m{\sum_{j=1}^n{a_{ij}y_ix_j}}&=\sum_{i=1}^m{\sum_{j=1}^n{a_{ij}\left( x_j\frac{\partial y_i}{\partial x_k}+y_i\frac{\partial x_j}{\partial x_k} \right)}}
+\\
+&=\sum_{i=1}^m{\sum_{j=1}^n{a_{ij}x_j\frac{\partial y_i}{\partial x_k}+\sum_{i=1}^m{a_{ik}y_i}}}
+\\
+&=\sum_{i=1}^m{\frac{\partial y_i}{\partial x_k}\sum_{j=1}^n{a_{ij}x_j}}+\left( \mathbf{y}^T\mathbf{A} \right) _{\left[ 1\times k \right]}
+\end{align*}
+$$
+
+又
+
+$$
+\begin{align*}
+\left( \mathbf{x}^T\mathbf{A}^T\left( \frac{\partial \mathbf{y}}{\partial \mathbf{x}^T} \right) \right) _{\left[ 1\times k \right]}&=\sum_{i=1}^m{\left( \mathbf{x}^T\mathbf{A}^T \right) _{\left[ 1\times i \right]}\left( \frac{\partial \mathbf{y}}{\partial \mathbf{x}^T} \right) _{\left[ i\times k \right]}}
+\\
+&=\sum_{i=1}^m{\left( \sum_{j=1}^n{a_{i\times j}x_j} \right) \left( \frac{\partial \mathbf{y}}{\partial \mathbf{x}^T} \right) _{\left[ i\times k \right]}}
+\\
+&=\sum_{i=1}^m{\left( \sum_{j=1}^n{a_{i\times j}x_j} \right) \left( \frac{\partial y_i}{\partial x_k} \right)}
+\\
+&=\sum_{i=1}^m{\frac{\partial y_i}{\partial x_k}}\sum_{j=1}^n{a_{i\times j}x_j}.
+\end{align*}
+$$
+
+所以
+
+$$
+\frac{\partial}{\partial x_k}\sum_{i=1}^m{\sum_{j=1}^n{a_{ij}y_ix_j}}=\left( \mathbf{x}^T\mathbf{A}^T\left( \frac{\partial \mathbf{y}}{\partial \mathbf{x}^T} \right) \right) _{\left[ 1\times k \right]}+\left( \mathbf{y}^T\mathbf{A} \right) _{\left[ 1\times k \right]}.
+$$
+
+这就完成了证明.
+
+(c) 证明是简单的
+
+$$
+\begin{align*}
+\frac{\partial}{\partial \mathbf{x}}\left( \mathbf{x}^T\mathbf{Ax} \right) &=\frac{\partial}{\partial \mathbf{x}}\sum_{i=1}^n{\sum_{j=1}^n{a_{ij}x_ix_j}}=\sum_{k=1}^n{\hat{x}_k\frac{\partial}{\partial x_k}\sum_{i=1}^n{\sum_{j=1}^n{a_{ij}x_ix_j}}}
+\\
+&=\sum_{k=1}^n{\hat{x}_k\sum_{i=1}^n{\sum_{j=1}^n{a_{ij}\left( x_j\frac{\partial}{\partial x_k}x_i+x_i\frac{\partial}{\partial x_k}x_j \right)}}}
+\\
+&=\sum_{k=1}^n{\hat{x}_k\left( \sum_{i=1}^n{\sum_{j=1}^n{a_{ij}x_j\frac{\partial}{\partial x_k}x_i}+\sum_{i=1}^n{\sum_{j=1}^n{a_{ij}}x_i\frac{\partial}{\partial x_k}x_j}} \right)}
+\\
+&=\sum_{k=1}^n{\hat{x}_k\left( \sum_{j=1}^n{a_{kj}x_j+\sum_{i=k}^n{a_{ik}}}x_i \right)}
+\\
+&=\sum_{k=1}^n{\hat{x}_k\left( \sum_{i=1}^n{a_{ki}x_i+\sum_{i=k}^n{a_{ik}}}x_i \right)}
+\\
+&=\sum_{k=1}^n{\hat{x}_k\sum_{i=1}^n{\left( a_{ki}+a_{ik} \right) x_i}}
+\\
+&=\left( \mathbf{A}+\mathbf{A}^T \right) \mathbf{x}
+\end{align*}
+$$
+
+(d) 
+
 ## Q5
 > 求 $\hat{\mathbf{a}}$ 使得
 > $$
@@ -180,25 +270,7 @@ $$
 此处运用到一个简单的数学等式:
 > $$\frac{\partial}{\partial \mathbf{x}}\left( \mathbf{x}^T\mathbf{Ax} \right) =\left( \mathbf{A}+\mathbf{A}^T \right) \mathbf{x}.$$
 
-证明是简单的
-
-$$
-\begin{align*}
-\frac{\partial}{\partial \mathbf{x}}\left( \mathbf{x}^T\mathbf{Ax} \right) &=\frac{\partial}{\partial \mathbf{x}}\sum_{i=1}^n{\sum_{j=1}^n{a_{ij}x_ix_j}}=\sum_{k=1}^n{\hat{x}_k\frac{\partial}{\partial x_k}\sum_{i=1}^n{\sum_{j=1}^n{a_{ij}x_ix_j}}}
-\\
-&=\sum_{k=1}^n{\hat{x}_k\sum_{i=1}^n{\sum_{j=1}^n{a_{ij}\left( x_j\frac{\partial}{\partial x_k}x_i+x_i\frac{\partial}{\partial x_k}x_j \right)}}}
-\\
-&=\sum_{k=1}^n{\hat{x}_k\left( \sum_{i=1}^n{\sum_{j=1}^n{a_{ij}x_j\frac{\partial}{\partial x_k}x_i}+\sum_{i=1}^n{\sum_{j=1}^n{a_{ij}}x_i\frac{\partial}{\partial x_k}x_j}} \right)}
-\\
-&=\sum_{k=1}^n{\hat{x}_k\left( \sum_{j=1}^n{a_{kj}x_j+\sum_{i=k}^n{a_{ik}}}x_i \right)}
-\\
-&=\sum_{k=1}^n{\hat{x}_k\left( \sum_{i=1}^n{a_{ki}x_i+\sum_{i=k}^n{a_{ik}}}x_i \right)}
-\\
-&=\sum_{k=1}^n{\hat{x}_k\sum_{i=1}^n{\left( a_{ki}+a_{ik} \right) x_i}}
-\\
-&=\left( \mathbf{A}+\mathbf{A}^T \right) \mathbf{x}
-\end{align*}
-$$
+证明请看 Q4(c)
 
 与此同时, $2\mathbf{a}^T\mathbf{X}^T\mathbf{y}$ 是关于 $\mathbf{a}$ 的简单线性项, 可以直接求导, $\mathbf{y}^T\mathbf{y}$ 是独立的常数, 求导后得到 0. 令
 
