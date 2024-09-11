@@ -158,3 +158,56 @@ $$
 \underset{\mathbf{a}}{\min}\left\| \mathbf{Xa}-\mathbf{y} \right\| _2.
 $$
 > 其中 $\mathbf{X}$ 是 $n\times p$ 阶的矩阵, $\mathbf{y}$ 是 $n\times 1$ 阶的向量, $\mathbf{a}$ 是 $p\times 1$ 阶的向量. $\mathbf{X}^T\mathbf{X}$ 是非奇异的.
+
+记
+
+$$
+\begin{align*}
+   L&=\left\| \mathbf{Xa}-\mathbf{y} \right\| _{2}^{2}=\left( \mathbf{Xa}-\mathbf{y} \right) ^T\left( \mathbf{Xa}-\mathbf{y} \right) 
+\\
+&=\left( \mathbf{a}^T\mathbf{X}^T-\mathbf{y}^T \right) \left( \mathbf{Xa}-\mathbf{y} \right) =\mathbf{a}^T\mathbf{X}^T\mathbf{Xa}-\mathbf{a}^T\mathbf{X}^T\mathbf{y}-\mathbf{y}^T\mathbf{Xa}+\mathbf{y}^T\mathbf{y}
+\\
+&=\mathbf{a}^T\mathbf{X}^T\mathbf{Xa}-2\mathbf{a}^T\mathbf{X}^T\mathbf{y}+\mathbf{y}^T\mathbf{y}. 
+\end{align*}
+$$
+
+最后一个等号是因为 $\mathbf{a}^T\mathbf{X}^T\mathbf{y}=\mathbf{y}^T\mathbf{Xa}$ 都是标量, 无所谓转置, 等式两侧同时对 $\mathbf{a}$ 求偏导数:
+
+$$
+\frac{\partial L}{\partial \mathbf{a}}=2\mathbf{X}^T\mathbf{Xa}-2\mathbf{X}^T\mathbf{y}.
+$$
+
+此处运用到一个简单的数学等式:
+> $$\frac{\partial}{\partial \mathbf{x}}\left( \mathbf{x}^T\mathbf{Ax} \right) =\left( \mathbf{A}+\mathbf{A}^T \right) \mathbf{x}.$$
+
+证明是简单的
+
+$$
+\begin{align*}
+\frac{\partial}{\partial \mathbf{x}}\left( \mathbf{x}^T\mathbf{Ax} \right) &=\frac{\partial}{\partial \mathbf{x}}\sum_{i=1}^n{\sum_{j=1}^n{a_{ij}x_ix_j}}=\sum_{k=1}^n{\hat{x}_k\frac{\partial}{\partial x_k}\sum_{i=1}^n{\sum_{j=1}^n{a_{ij}x_ix_j}}}
+\\
+&=\sum_{k=1}^n{\hat{x}_k\sum_{i=1}^n{\sum_{j=1}^n{a_{ij}\left( x_j\frac{\partial}{\partial x_k}x_i+x_i\frac{\partial}{\partial x_k}x_j \right)}}}
+\\
+&=\sum_{k=1}^n{\hat{x}_k\left( \sum_{i=1}^n{\sum_{j=1}^n{a_{ij}x_j\frac{\partial}{\partial x_k}x_i}+\sum_{i=1}^n{\sum_{j=1}^n{a_{ij}}x_i\frac{\partial}{\partial x_k}x_j}} \right)}
+\\
+&=\sum_{k=1}^n{\hat{x}_k\left( \sum_{j=1}^n{a_{kj}x_j+\sum_{i=k}^n{a_{ik}}}x_i \right)}
+\\
+&=\sum_{k=1}^n{\hat{x}_k\left( \sum_{i=1}^n{a_{ki}x_i+\sum_{i=k}^n{a_{ik}}}x_i \right)}
+\\
+&=\sum_{k=1}^n{\hat{x}_k\sum_{i=1}^n{\left( a_{ki}+a_{ik} \right) x_i}}
+\\
+&=\left( \mathbf{A}+\mathbf{A}^T \right) \mathbf{x}
+\end{align*}
+$$
+
+与此同时, $2\mathbf{a}^T\mathbf{X}^T\mathbf{y}$ 是关于 $\mathbf{a}$ 的简单线性项, 可以直接求导, $\mathbf{y}^T\mathbf{y}$ 是独立的常数, 求导后得到 0. 令
+
+$$
+\frac{\partial L}{\partial \mathbf{a}}=2\mathbf{X}^T\mathbf{Xa}-2\mathbf{X}^T\mathbf{y}=0.
+$$
+
+解得
+
+$$
+\mathbf{a}=\left( \mathbf{X}^T\mathbf{X} \right) ^{-1}\mathbf{X}^T\mathbf{y}.
+$$
