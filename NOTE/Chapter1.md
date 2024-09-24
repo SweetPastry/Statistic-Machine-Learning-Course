@@ -53,6 +53,18 @@ $$
 P\left( X\geqslant a \right) \leqslant \frac{E\left( X \right)}{a}.
 $$
 
+当然, 我们也可以用积分放缩的方法证明:
+
+$$
+\begin{align*}
+E\left( X \right) &=\int_{\mathbb{R}}{XP\left( X \right) \mathrm{d}X=}\int_0^{+\infty}{XP\left( X \right) \mathrm{d}X}
+\\\\
+&\geqslant \int_a^{+\infty}{XP\left( X \right) \mathrm{d}X}\geqslant \int_a^{+\infty}{aP\left( X \right) \mathrm{d}X}
+\\\\
+&=aP\left( X\geqslant a \right) .
+\end{align*}
+$$
+
 Markov 不等式很容易推导出其他估计, 例如代入 $\mathrm{e}^{\lambda X}$, 其中 $\lambda>0$, 有
 > $$E\left( \mathrm{e}^{\lambda X}\geqslant \mathrm{e}^{\lambda a} \right) \leqslant \frac{E\left( \mathrm{e}^{\lambda X} \right)}{\mathrm{e}^{\lambda a}}.$$
 
