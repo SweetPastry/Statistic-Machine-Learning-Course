@@ -66,6 +66,7 @@ E\left( X \right) &=\int_{\mathbb{R}}{XP\left( X \right) \mathrm{d}X=}\int_0^{+\
 $$
 
 Markov 不等式很容易推导出其他估计, 例如代入 $\mathrm{e}^{\lambda X}$, 其中 $\lambda>0$, 有
+> **(Chernoff bound)** 对于随机变量 $X$ 以及任意的 $\lambda\geqslant0$, 成立:
 > $$E\left( \mathrm{e}^{\lambda X}\geqslant \mathrm{e}^{\lambda a} \right) \leqslant \frac{E\left( \mathrm{e}^{\lambda X} \right)}{\mathrm{e}^{\lambda a}}.$$
 
 ## Chebyshev 不等式
@@ -85,10 +86,6 @@ $$
 $$
 E\left( I_A \right) =P\left( A \right) \leqslant \frac{E\left[ \left( X-\mu \right) ^2 \right]}{a^2}=\frac{D\left( x \right)}{a^2}.
 $$
-
-
-## Chernoff 界
-
 
 ## Hoeffding 不等式
 Hoeffding 引理的证明可以参考[这篇文章](https://mp.weixin.qq.com/s/olxUqEp8m0v97lAfB3xF9g)的 Q2, 
